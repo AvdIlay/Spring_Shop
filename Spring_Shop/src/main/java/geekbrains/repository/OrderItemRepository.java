@@ -1,7 +1,8 @@
-package geekbrains.repositories;
+package geekbrains.repository;
 
 import geekbrains.entities.OrderItem;
 import org.springframework.data.repository.CrudRepository;
 
 public interface OrderItemRepository extends CrudRepository<OrderItem, Long> {
+    void deleteByProductTitle(String title);
 }

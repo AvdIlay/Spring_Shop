@@ -1,7 +1,10 @@
 package geekbrains.exceptions;
 
-public class RoleNotFoundException extends NotFoundException {
-    public RoleNotFoundException(String message) {
+import org.springframework.web.client.HttpClientErrorException;
+
+public class RoleNotFoundException  extends NotFoundException {
+    public RoleNotFoundException(String message){
         super(message);
     }
 }
+

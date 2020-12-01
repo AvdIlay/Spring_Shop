@@ -1,5 +1,7 @@
 package geekbrains.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jdk.dynalink.linker.LinkerServices;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -18,9 +20,15 @@ public class Product {
     private String title;
     private BigDecimal price;
 
-    @ManyToMany
+    @JsonBackReference
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "products_categories",
-    joinColumns = @JoinColumn(name = "product_id"),
-    inverseJoinColumns = @JoinColumn(name =  "category_id"))
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<Category> categories;
+
+    @Override
+    public String toString() {
+        return this.title;
+    }
 }

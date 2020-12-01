@@ -1,4 +1,4 @@
-package geekbrains.repositories;
+package geekbrains.repository;
 
 import geekbrains.entities.Category;
 import org.springframework.data.repository.CrudRepository;
