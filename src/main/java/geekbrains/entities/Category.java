@@ -16,6 +16,4 @@ public class Category {
     @Column(name = "title")
     private String title;
 
-
-
 }

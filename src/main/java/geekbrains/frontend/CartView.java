@@ -51,7 +51,7 @@ public class CartView  extends AbstractView{
         phoneField.setWidth("15%");
         Button toOrderButton = new Button("Создать заказ", e->{
             cartService.setAddress(addressField.getValue());
-            cartService.setPhone(String.valueOf(phoneField.getValue()));
+            cartService.setPhoneNumber(phoneField.getValue());
             orderService.saveOrder();
 
             Notification.show("Заказ успешно сохранён и передан менеджеру");

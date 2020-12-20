@@ -26,3 +26,4 @@ public class SecurityUtils {
                 && authentication.isAuthenticated();
     }
 }
+

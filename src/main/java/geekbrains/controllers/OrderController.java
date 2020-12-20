@@ -1,5 +1,6 @@
 package geekbrains.controllers;
 
+import geekbrains.aspect.Log;
 import geekbrains.entities.Order;
 import geekbrains.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,11 @@ public class OrderController {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Log
     @GetMapping
     public List<Order> findAllOrders(){
         return orderRepository.findAll();
     }
 
 }
+

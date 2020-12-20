@@ -9,3 +9,4 @@ public interface RoleRepository extends CrudRepository<Role, Long> {
     Optional<Role> findByName(String name);
 }
 
+
