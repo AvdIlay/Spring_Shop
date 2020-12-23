@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: zool-server
+eureka:
+  client:
+    instance:
+      preferIpAddress: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:9000/eureka}
+    registerWithEureka: true
+server:
+  port: 8083
+  servlet:
+    context-path: /cloud
+zuul:
+  routes:
+   service_1: /service_1/**
+
+  sensitiveHeaders: Cookie, Set-Cookie
