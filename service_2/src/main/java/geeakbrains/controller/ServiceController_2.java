@@ -2,17 +2,20 @@ package geeakbrains.controller;
 
 
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.stereotype.Repository;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@Repository
 
-@FeignClient("service_1")
+
+@FeignClient("service-1")
 public interface ServiceController_2 {
+
     @GetMapping("/first")
-    String firstMethodService2();
+    String firstMethodService();
 
     @GetMapping("/parameter/{id}")
-    String secondMethodService2(@PathVariable(value = "id") Integer id);
+    String secondMethodService(@PathVariable(value = "id") Integer id);
+
 }

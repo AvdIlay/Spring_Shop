@@ -8,8 +8,8 @@
 
         <module>service_1</module>
         <module>service_2</module>
-        <module>zool-server</module>
         <module>eureka-service</module>
+        <module>zuul-server</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

@@ -1,4 +1,4 @@
-package geekbrains.zool;
+package geekbrains.ZuulServer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,8 +8,8 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 @SpringBootApplication
 @EnableEurekaClient
 @EnableZuulProxy
-public class ZoolServerApp {
+public class ZuulServerApp {
     public static void main(String[] args) {
-        SpringApplication.run(ZoolServerApp.class, args);
+        SpringApplication.run(ZuulServerApp.class, args);
     }
 }
