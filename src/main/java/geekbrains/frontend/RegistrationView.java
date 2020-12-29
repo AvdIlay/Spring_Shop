@@ -59,8 +59,7 @@ public class RegistrationView extends AbstractView {
             if(hasError) {
                 return;
             } else {
-                User user = userService.saveUser(phoneTextField.getValue(),
-                        passwordTextField.getValue(), firstNameTextField.getValue(),
+                User user = userService.saveUser(phoneTextField.getValue(), passwordTextField.getValue(), firstNameTextField.getValue(),
                         lastNameTextField.getValue(), emailTextField.getValue(), ageTextField.getValue());
 
                 UI.getCurrent().navigate("login");
