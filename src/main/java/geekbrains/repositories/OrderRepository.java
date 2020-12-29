@@ -12,4 +12,7 @@ public interface OrderRepository extends CrudRepository<Order, Long> {
 
     @Query("SELECT o FROM Order o JOIN FETCH o.user")
     List<Order> findAllByUserId(long userId);
+
+    @Query("SELECT o FROM Order o JOIN FETCH o.user WHERE o.phoneNumber = :userName")
+    List<Order> findAllByUser_Phone(String userName);
 }

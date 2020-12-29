@@ -2,6 +2,7 @@ package geekbrains.services;
 
 import geekbrains.entities.OrderItem;
 import geekbrains.entities.Product;
+
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -12,17 +13,6 @@ import java.util.List;
 @Service
 public class CartService {
     private List<OrderItem> items;
-    private BigDecimal price;
-    private String address;
-    private double phone;
-
-    public List<OrderItem> getItems() {
-        return items;
-    }
-
-    public void setItems(List<OrderItem> items) {
-        this.items = items;
-    }
 
     public BigDecimal getPrice() {
         return price;
@@ -30,6 +20,31 @@ public class CartService {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    private BigDecimal price;
+    private String address;
+    private String phone;
+
+    public void clear() {
+        this.items = new ArrayList<>();
+    }
+
+    @PostConstruct
+    public void init() {
+        items = new ArrayList<>();
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public List<OrderItem> getItems() {
+        return items;
     }
 
     public String getAddress() {
@@ -40,34 +55,24 @@ public class CartService {
         this.address = address;
     }
 
-    public double getPhoneNumber() {
-        return phone;
-    }
-
-    public void setPhoneNumber(double phone) {
-        this.phone = phone;
-    }
-
-    @PostConstruct
-    public void init(){
-        items = new ArrayList<>();
-    }
-
-    public void add(Product product){
-        for (OrderItem i : items){
-            if (i.getProduct().getId().equals(product.getId())){
+    public void add(Product product) {
+        for (OrderItem i : items) {
+            if (i.getProduct().getId().equals(product.getId())) {
                 i.increment();
                 recalculate();
                 return;
             }
-        } items.add(new OrderItem(product));
+        }
+
+        items.add(new OrderItem(product));
         recalculate();
     }
 
-    private void recalculate () {
+    public void recalculate() {
         price = new BigDecimal(0.0);
         items.stream().forEach(orderItem ->
-                price = price.add(orderItem.getPrice()));
+                price = price.add(orderItem.getPrice())
+        );
     }
 
 }

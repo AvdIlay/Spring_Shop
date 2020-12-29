@@ -24,13 +24,19 @@ public class Order {
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name =  "item_id"))
     private List<OrderItem> items;
-    private double phoneNumber;
+
+    private String phoneNumber;
 
     private String address;
+
     private BigDecimal price;
+
     private Status status;
 
-    public enum Status{
+
+
+    public enum Status {
         MANAGING, DELIVERING, DELIVERED
     }
+
 }

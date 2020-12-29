@@ -1,5 +1,6 @@
 package geekbrains.frontend;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.notification.Notification;
@@ -13,11 +14,13 @@ import geekbrains.services.CartService;
 import geekbrains.services.OrderService;
 
 @Route("cart")
-public class CartView  extends AbstractView{
-    private  final CartService cartService;
+public class CartView extends AbstractView {
+
+    private final CartService cartService;
     private final OrderService orderService;
 
-    public CartView(CartService cartService, OrderService orderService) {
+    public CartView(CartService cartService,
+                    OrderService orderService) {
         this.cartService = cartService;
         this.orderService = orderService;
         initCartPage();
@@ -26,7 +29,7 @@ public class CartView  extends AbstractView{
     private void initCartPage() {
         Grid<OrderItem> grid = new Grid<>(OrderItem.class);
         grid.setItems(cartService.getItems());
-        grid.setWidth("50%");
+        grid.setWidth("60%");
         grid.setColumns("product", "price", "quantity");
 
         grid.addColumn(new ComponentRenderer<>(item -> {
@@ -34,30 +37,33 @@ public class CartView  extends AbstractView{
                 item.increment();
                 grid.setItems(cartService.getItems());
             });
+
             Button minusButton = new Button("-", i -> {
                 item.decrement();
-                if(item.getQuantity() < 0) {
-                    item.setQuantity(0);
-                    return;
-                }
                 grid.setItems(cartService.getItems());
             });
 
             return new HorizontalLayout(plusButton, minusButton);
         }));
+
         TextField addressField = initTextFieldWithPlaceholder("Введите адрес доставки");
-        addressField.setWidth("15%");
-        NumberField phoneField = initNumberFieldWithPlaceholder("Введите номер телефона");
-        phoneField.setWidth("15%");
-        Button toOrderButton = new Button("Создать заказ", e->{
+        TextField phoneField = initTextFieldWithPlaceholder("Введите номер телефона");
+
+        Button toOrderButton = new Button("Создать заказ", e -> {
             cartService.setAddress(addressField.getValue());
-            cartService.setPhoneNumber(phoneField.getValue());
+            cartService.setPhone(phoneField.getValue());
             orderService.saveOrder();
+
+            cartService.clear();
+            UI.getCurrent().navigate("market");
 
             Notification.show("Заказ успешно сохранён и передан менеджеру");
         });
+
         setDefaultHorizontalComponentAlignment(Alignment.CENTER);
-        setHorizontalComponentAlignment(Alignment.CENTER, grid);
-        add(grid,addressField,phoneField,toOrderButton);
+        setAlignItems(Alignment.CENTER);
+
+        add(grid, addressField, phoneField, toOrderButton);
     }
+
 }

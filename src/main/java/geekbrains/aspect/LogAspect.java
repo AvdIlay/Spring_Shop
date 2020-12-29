@@ -34,8 +34,8 @@ public class LogAspect {
         List<Order> order = orderService.getByUserId(1L);
         String name = order.get(0).getUser().getPhone();
         String address = order.get(0).getAddress();
-        double number = order.get(0).getPhoneNumber();
-        long phoneNumber = (long) number;
+        String number = order.get(0).getPhoneNumber();
+        String phoneNumber =  number;
         String price = String.valueOf(order.get(0).getPrice());
         String status = String.valueOf(order.get(0).getStatus());
         String items = String.valueOf(order.get(0).getItems());
